@@ -1,31 +1,25 @@
-import { useWeb3Modal } from "@web3modal/react";
 import { useState } from "react";
 import { useAccount, useDisconnect } from "wagmi";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 export default function CustomButton() {
   const [loading, setLoading] = useState(false);
-  const { open } = useWeb3Modal();
   const { isConnected } = useAccount();
   const { disconnect } = useDisconnect();
+  const { openConnectModal } = useConnectModal();
   const label = isConnected ? "Disconnect" : "Connect Custom";
-
-  async function onOpen() {
-    setLoading(true);
-    await open();
-    setLoading(false);
-  }
 
   function onClick() {
     if (isConnected) {
       disconnect();
     } else {
-      onOpen();
+      openConnectModal?.();
     }
   }
 
   return (
-    <button onClick={onClick} disabled={loading}>
-      {loading ? "Loading..." : label}
+    <button onClick={onClick}>
+      {label}
     </button>
   );
 }
