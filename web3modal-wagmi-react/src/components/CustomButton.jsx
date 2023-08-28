@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAccount, useDisconnect } from "wagmi";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { useConnectModal } from "@rubicondefi/rainbowkit";
 
 export default function CustomButton() {
   const [loading, setLoading] = useState(false);

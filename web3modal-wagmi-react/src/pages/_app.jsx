@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { mainnet, optimism, polygon } from "wagmi/chains";
-import { getDefaultWallets, connectorsForWallets, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { getDefaultWallets, connectorsForWallets, RainbowKitProvider, darkTheme } from '@rubicondefi/rainbowkit';
 import { publicProvider } from 'wagmi/providers/public';
-import { braveWallet } from '@rainbow-me/rainbowkit/wallets';
+import { braveWallet } from '@rubicondefi/rainbowkit/wallets';
 
 import "../styles.css";
+import '@rubicondefi/rainbowkit/styles.css';
+
 
 // 1. Get projectID at https://cloud.walletconnect.com
 if (!process.env.NEXT_PUBLIC_PROJECT_ID) {
@@ -15,7 +17,7 @@ const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
 // 2. Configure wagmi client
 const { chains, publicClient } = configureChains(
-  [mainnet, polygon, optimism],
+  [optimism],
   [publicProvider()]
 );
 
